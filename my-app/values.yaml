@@ -51,9 +51,14 @@ securityContext: {}
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
-  type: NodePort  # Use NodePort
-  port: 80        # Service port
-  targetPort: http # Container target port
+  enabled: true
+  type: NodePort
+  port: 8000
+  ports:
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+    nodePort: 30007
 
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
