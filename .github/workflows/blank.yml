@@ -27,6 +27,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: neeraj46665/mosoInterior:latest  # Docker Hub username and image name
+          tags: neeraj46665/mosointerior:latest  # Docker Hub username and image name
 
 
