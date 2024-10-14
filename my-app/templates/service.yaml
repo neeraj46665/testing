@@ -5,11 +5,11 @@ metadata:
   labels:
     {{- include "my-app.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type | default "ClusterIP" }} # Sets default to ClusterIP if not specified
+  type: NodePort  # Change this to NodePort
   ports:
-    - port: {{ .Values.service.port | default 80 }}      # Sets default port to 80 if not specified
-      targetPort: {{ .Values.service.targetPort | default "http" }}  # Sets default targetPort to "http"
+    - port: 80         # External port for the service
+      targetPort: http  # Internal container port
       protocol: TCP
-      name: http
+      nodePort: 30007  # Explicitly specify the nodePort
   selector:
     {{- include "my-app.selectorLabels" . | nindent 4 }}
