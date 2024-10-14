@@ -5,10 +5,10 @@ metadata:
   labels:
     {{- include "my-app.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.service.type | default "ClusterIP" }} # Sets default to ClusterIP if not specified
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - port: {{ .Values.service.port | default 80 }}      # Sets default port to 80 if not specified
+      targetPort: {{ .Values.service.targetPort | default "http" }}  # Sets default targetPort to "http"
       protocol: TCP
       name: http
   selector:
