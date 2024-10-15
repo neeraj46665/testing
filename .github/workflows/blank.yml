@@ -60,7 +60,7 @@ jobs:
             kubectl wait --for=condition=available --timeout=60s deployment/mosointerior
 
             # Port forward the service
-            kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 &
+            
 
             nohup kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 > /dev/null 2>&1 &
           EOF
