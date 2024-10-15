@@ -51,6 +51,7 @@ jobs:
             cd /home/ec2-user/my-app/k8s
 
             # Apply Kubernetes manifests
+            echo "running kubectl commands"
             kubectl apply -f deployment.yml
             kubectl apply -f service.yml
 
