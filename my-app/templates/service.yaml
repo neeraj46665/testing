@@ -5,10 +5,11 @@ metadata:
   labels:
     {{- include "my-app.labels" . | nindent 4 }}
 spec:
-  type: LoadBalancer  # Change this to LoadBalancer
+  type: NodePort  # Change from LoadBalancer to NodePort
   ports:
     - port: 80          # External port for the service
       targetPort: http   # Internal container port
       protocol: TCP
+      nodePort: 30000    # Optional: Specify a node port (between 30000-32767)
   selector:
     {{- include "my-app.selectorLabels" . | nindent 4 }}
