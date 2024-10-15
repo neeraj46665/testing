@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosointerior
+  labels:
+    app: mosointerior
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mosointerior
+  template:
+    metadata:
+      labels:
+        app: mosointerior
+    spec:
+      containers:
+      - name: mosointerior
+        image: neeraj46665/mosointerior:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+
