@@ -62,8 +62,6 @@ jobs:
             # Port forward the service
             kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 &
 
-            # Disown the process so it doesn't block the shell
-            PORT_FWD_PID=$!
-            disown $PORT_FWD_PID
+            exit
           EOF
 
