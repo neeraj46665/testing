@@ -37,8 +37,13 @@ jobs:
         run: |
           echo "$EC2_SSH_KEY" > dovekey.pem
           chmod 600 dovekey.pem
+          
+          # Create .ssh directory if it does not exist
+          mkdir -p ~/.ssh
+          
           # Add the host to known hosts
           ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
+          
           # Now SSH into the EC2 instance
           ssh -i dovekey.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
             # Clone the repository
@@ -52,3 +57,4 @@ jobs:
             # Port forward the service
             kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 &
           EOF
+
