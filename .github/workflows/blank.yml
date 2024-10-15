@@ -54,6 +54,10 @@ jobs:
             echo "running kubectl commands"
             kubectl apply -f deployment.yml
             kubectl apply -f service.yml
+            
+            # Wait for the pod to be running
+            echo "Waiting for the pod to be running..."
+            kubectl wait --for=condition=available --timeout=60s deployment/mosointerior
 
             # Port forward the service
             kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 &
