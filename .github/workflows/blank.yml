@@ -62,6 +62,6 @@ jobs:
             # Port forward the service
             kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 &
 
-            exit
+            nohup kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 > /dev/null 2>&1 &
           EOF
 
