@@ -51,14 +51,13 @@ securityContext: {}
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
-  enabled: true
-  type: NodePort
-  port: 8000
-  ports:
-    port: 80
-    targetPort: 8000
-    protocol: TCP
-    nodePort: 30007
+  enabled: true                # Enable the service
+  type: NodePort               # Set service type to NodePort
+  port: 80                     # External port for the service
+  targetPort: 8000             # Internal port the application is listening on
+  protocol: TCP                # Protocol type
+  nodePort: 30007              # Specific NodePort (optional)
+
 
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
