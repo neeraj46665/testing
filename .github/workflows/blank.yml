@@ -29,4 +29,23 @@ jobs:
           push: true
           tags: neeraj46665/mosointerior:latest  # Docker Hub username and image name
 
+      - name: SSH to EC2 and deploy to Minikube
+        env:
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+        run: |
+          echo "$EC2_SSH_KEY" > dovekey.pem
+          chmod 600 dovekey.pem
+          ssh -i dovekey.pem $EC2_USER@$EC2_HOST << 'EOF'
+            # Clone the repository
+            git clone https://github.com/neeraj46665/testing.git /home/ec2-user/my-app
+            cd /home/ec2-user/my-app/k8s
 
+            # Apply Kubernetes manifests
+            kubectl apply -f deployment.yml
+            kubectl apply -f service.yml
+
+            # Port forward the service
+            kubectl port-forward svc/mosointerior 3000:80 --address=0.0.0.0 &
+          EOF
