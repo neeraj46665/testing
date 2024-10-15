@@ -47,7 +47,7 @@ jobs:
           # Now SSH into the EC2 instance
           ssh -i dovekey.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
             # Clone the repository
-            git clone https://github.com/neeraj46665/testing.git /home/ec2-user/my-app
+            https://github.com/neeraj46665/testing-Minikube-CI-CD-AWS.git /home/ec2-user/my-app
             cd /home/ec2-user/my-app/k8s
 
             # Apply Kubernetes manifests
